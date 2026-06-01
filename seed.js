@@ -5,7 +5,8 @@ const Produit = require('./models/Produit');
 const Commande = require('./models/Commande');
 
 // Connexion à MongoDB
-mongoose.connect('mongodb://localhost:27017/tp_auth')
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/tp_auth';
+mongoose.connect(mongoURI)
     .then(() => console.log('Connecté à MongoDB pour le seeding...'))
     .catch(err => console.error('Erreur de connexion MongoDB:', err));
 

@@ -8,8 +8,9 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Connexion à MongoDB
-mongoose.connect('mongodb://localhost:27017/tp_auth')
-    .then(() => console.log('Connecté à MongoDB (tp_auth)'))
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/tp_auth';
+mongoose.connect(mongoURI)
+    .then(() => console.log(`Connecté à MongoDB (${mongoURI})`))
     .catch(err => console.error('Erreur de connexion MongoDB:', err));
 
 // Importation des routes
