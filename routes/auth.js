@@ -6,7 +6,7 @@ const Utilisateur = require('../models/Utilisateur');
 
 const JWT_SECRET = 'ma_cle_secrete_super_securisee';
 
-// Inscription
+
 router.post('/register', async (req, res) => {
     try {
         const { nom, prenom, email, mot_de_passe } = req.body;
@@ -15,7 +15,7 @@ router.post('/register', async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(mot_de_passe, 10);
         
-        // Trouver le dernier ID pour l'incrémenter
+        
         const lastUser = await Utilisateur.findOne().sort({ id: -1 });
         const newId = lastUser ? lastUser.id + 1 : 1;
 
@@ -35,7 +35,8 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Connexion
+
+
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body; // on garde 'password' pour le body de la requête
